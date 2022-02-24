@@ -1,1 +1,1 @@
-module.exports = require("./LogBot")
+module.exports.LogBot = require("./LogBot.js");
