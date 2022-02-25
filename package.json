@@ -1,0 +1,24 @@
+{
+  "name": "@axelrothe/logbot",
+  "version": "1.0.0",
+  "description": "logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxelRothe/logbot.git"
+  },
+  "author": "Axel Rothe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxelRothe/logbot/issues"
+  },
+  "homepage": "https://github.com/AxelRothe/logbot#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "prettyjson": "^1.2.5",
+    "spinnies": "^0.3.2"
+  }
+}
