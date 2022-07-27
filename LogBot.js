@@ -62,7 +62,7 @@ class LogBot {
     }
 
     log(errorCode, message, print = this.verbose) {
-        errorCode = errorCode.toString();
+        errorCode = this.resolveErrorCode(errorCode.toString());
 
         this.addToHistory(errorCode, message);
 
