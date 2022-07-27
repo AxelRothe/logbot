@@ -4,7 +4,7 @@ const prettyjson = require("prettyjson");
 const Spinnies = require("spinnies");
 const errorCodes = require("./errorCodes.json");
 const fs = require("fs");
-const swallow = require("swallowjs");
+const swallow = require("swallow-me");
 
 class LogBot {
     history = [];
