@@ -62,6 +62,8 @@ class LogBot {
     }
 
     log(errorCode, message, print = this.verbose) {
+        errorCode = errorCode.toString();
+
         this.addToHistory(errorCode, message);
 
         const timestamp = Date.now();
