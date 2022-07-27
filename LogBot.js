@@ -90,11 +90,6 @@ class LogBot {
     addToHistory(errorCode, message) {
         const logRecord = new LogRecord(errorCode, message)
         this.history.push(logRecord);
-        swallow(() => {
-            fs.appendFile("./logs/log.json", JSON.stringify(logRecord, null, 2), (err) => {
-                if (err) throw err;
-            });
-        })
     }
 
     addSpinner(name, text = "NaN") {
