@@ -1,5 +1,5 @@
 {
-  "name": "@axelrothe/logbot",
+  "name": "logbotjs",
   "version": "1.0.0",
   "description": "logger",
   "main": "index.js",
@@ -19,6 +19,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "prettyjson": "^1.2.5",
-    "spinnies": "^0.3.2"
+    "spinnies": "^0.3.2",
+    "swallow-me" : "^1.0.0"
   }
 }

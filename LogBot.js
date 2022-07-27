@@ -2,10 +2,14 @@ const chalk = require("chalk");
 const LogRecord = require("./LogRecord");
 const prettyjson = require("prettyjson");
 const Spinnies = require("spinnies");
+const errorCodes = require("./errorCodes.json");
+const fs = require("fs");
+const swallow = require("swallowjs");
 
 class LogBot {
     history = [];
-    verbose = false;
+    verbose = true;
+    errorCodes = errorCodes;
     prettyJsonOptions = {
         keysColor: "brightCyan",
         dashColor: "magenta",
@@ -53,9 +57,12 @@ class LogBot {
         console.log(processedSplash);
     }
 
-    log(title, message, print = this.verbose) {
-        this.history.push(new LogRecord(title, message));
-        //console.log(Date.now() - this.launchTime + "ms" + "\t" + chalk.hex("#00FFA3").bold(title) + ": " + message);
+    resolveErrorCode(code) {
+        return this.errorCodes[code] ? this.errorCodes[code] : "UNKNOWN_ERROR (" + code + ")";
+    }
+
+    log(errorCode, message, print = this.verbose) {
+        this.addToHistory(errorCode, message);
 
         const timestamp = Date.now();
 
@@ -63,21 +70,31 @@ class LogBot {
 
         let string = chalk.dim(new Date(timestamp).toLocaleString()) + "\t";
 
-        if (title.match(/(error)|(failure)|(failed)|(panic)/gi)) {
+        if (errorCode.match(/(error)|(fail)|(panic)/gi)) {
             print = true;
-            string += this.color.red(title.toLowerCase());
-        } else if (title.match(/(warn)|(warning)/gi)) {
-            string += this.color.yellow(title.toLowerCase());
-        } else if (title.match(/(success)/gi)) {
+            string += this.color.red(errorCode);
+        } else if (errorCode.match(/(warn)|(warning)/gi)) {
+            string += this.color.yellow(errorCode);
+        } else if (errorCode.match(/(success)|(ok)|(create)/gi)) {
             //print = true;
-            string += this.color.green(title.toLowerCase());
+            string += this.color.green(errorCode);
         } else {
-            string += this.color.white(title.toLowerCase());
+            string += this.color.white(errorCode);
         }
 
         string += message ? " " + this.color.blue(message) : "";
         if (print) console.log(string);
         return string;
+    }
+
+    addToHistory(errorCode, message) {
+        const logRecord = new LogRecord(errorCode, message)
+        this.history.push(logRecord);
+        swallow(() => {
+            fs.appendFile("./logs/log.json", JSON.stringify(logRecord, null, 2), (err) => {
+                if (err) throw err;
+            });
+        })
     }
 
     addSpinner(name, text = "NaN") {
