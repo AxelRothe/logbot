@@ -40,9 +40,10 @@ class LogBot {
     log(errorCode, message, print = this.verbose) {
         errorCode = this.resolveErrorCode(errorCode.toString());
 
+        const timestamp = Date.now();
+
         this.addToHistory(errorCode, message);
 
-        const timestamp = Date.now();
 
         let colorTitle = "#00FFA3";
 
@@ -66,7 +67,7 @@ class LogBot {
     }
 
     addToHistory(errorCode, message) {
-        const logRecord = new LogRecord(errorCode, message)
+        const logRecord = new LogRecord(Date.now(), errorCode, message)
         if (this.pathToLogFile !== null) {
             //append line to log file
             fs.appendFile(this.pathToLogFile, logRecord.toString() + "\n", ()=>{});

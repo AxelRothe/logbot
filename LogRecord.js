@@ -1,16 +1,16 @@
 class LogRecord {
     title;
     message;
-    params;
+    timestamp;
 
-    constructor(title, message, ...params) {
+    constructor(timestamp, title, message) {
+        this.timestamp = timestamp;
         this.title = title;
         this.message = message;
-        this.params = params;
     }
 
     toString() {
-        return this.title + " " + this.message + " " + this.params.join(" ");
+        return `[${new Date(this.timestamp).toLocaleString()}] ${this.title} ${this.message}`;
     }
 }
 module.exports = LogRecord;
