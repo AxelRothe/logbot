@@ -8,5 +8,9 @@ class LogRecord {
         this.message = message;
         this.params = params;
     }
+
+    toString() {
+        return this.title + " " + this.message + " " + this.params.join(" ");
+    }
 }
 module.exports = LogRecord;

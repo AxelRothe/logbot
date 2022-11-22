@@ -4,7 +4,6 @@ const prettyjson = require("prettyjson");
 const Spinnies = require("spinnies");
 const errorCodes = require("./errorCodes.json");
 const fs = require("fs");
-const swallow = require("swallow-me");
 
 class LogBot {
     history = [];
@@ -18,6 +17,8 @@ class LogBot {
     };
     spinnies = new Spinnies();
 
+    pathToLogFile = null;
+
     color = {
         green: chalk.hex("#00FFA3"),
         blue: chalk.hex("#008AFF"),
@@ -28,33 +29,8 @@ class LogBot {
         purple: chalk.hex("#ee00ff"),
     };
 
-    splash(splash) {
-
-        let processedSplash = "";
-
-        const parts = splash.split("\n");
-        parts.forEach((line) => {
-            let newLine = "";
-            for (let i = 0; i < line.length; i++) {
-                if (line[i] === "/" || line[i] === "(") {
-                    newLine += this.color.darkBlue(line[i]);
-                } else if (line[i] === "@") {
-                    newLine += this.color.white(line[i]);
-                } else if (line[i] === "*") {
-                    newLine += this.color.blue(line[i]);
-                } else if (line[i] === "#") {
-                    newLine += this.color.blue(line[i]);
-                } else if (line[i] === ".") {
-                    newLine += this.color.blue(line[i]);
-                } else {
-                    newLine += this.color.white(line[i]);
-                }
-            }
-
-            processedSplash += newLine + "\n";
-        });
-
-        console.log(processedSplash);
+    setPathToLogFile(path) {
+        this.pathToLogFile = path;
     }
 
     resolveErrorCode(code) {
@@ -91,7 +67,10 @@ class LogBot {
 
     addToHistory(errorCode, message) {
         const logRecord = new LogRecord(errorCode, message)
-        this.history.push(logRecord);
+        if (this.pathToLogFile !== null) {
+            //append line to log file
+            fs.appendFile(this.pathToLogFile, logRecord.toString() + "\n", ()=>{});
+        }
     }
 
     addSpinner(name, text = "NaN") {
