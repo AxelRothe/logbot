@@ -1,11 +1,17 @@
 {
   "name": "logbotjs",
   "version": "1.1.5",
-  "description": "logger",
-  "main": "index.js",
+  "description": "LogBot is a simple console/file logger for NodeJS/bun written in TypeScript.",
+  "type": "module",
+  "main": "./build/index.d.ts",
+  "types": "./build/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsx ./test/log.ts",
+    "build": "tsc && tsc-alias"
   },
+  "files": [
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AxelRothe/logbot.git"
@@ -17,8 +23,22 @@
   },
   "homepage": "https://github.com/AxelRothe/logbot#readme",
   "dependencies": {
-    "chalk": "^4.1.2",
+    "chalk": "^5.4.1",
+    "cli-progress": "^3.12.0",
     "prettyjson": "^1.2.5",
-    "spinnies": "^0.3.2"
+    "spinnies": "^0.5.1"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "^3.11.6",
+    "@types/node": "^22.12.0",
+    "@types/prettyjson": "^0.0.33",
+    "@types/spinnies": "^0.5.3",
+    "prettier": "^3.4.2",
+    "tsc-alias": "^1.8.10",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "prettier": {
+    "semi": false
   }
 }
