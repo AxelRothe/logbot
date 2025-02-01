@@ -1,6 +1,6 @@
 {
   "name": "logbotjs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "LogBot is a simple console/file logger for NodeJS/bun written in TypeScript.",
   "type": "module",
   "main": "./build/index.d.ts",
