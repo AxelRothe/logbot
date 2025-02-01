@@ -36,9 +36,9 @@ export class LogBot {
     purple: chalk.hex("#ee00ff"),
   }
 
-  constructor(options: { logfile?: string; verbose?: boolean }) {
-    if (options.logfile) this.setLogFilePath(options.logfile)
-    if (options.verbose !== undefined) this.verbose = options.verbose
+  constructor(options?: { logfile?: string; verbose?: boolean }) {
+    if (options?.logfile) this.setLogFilePath(options?.logfile)
+    if (options?.verbose !== undefined) this.verbose = options?.verbose
   }
 
   setLogFilePath(path: string) {
