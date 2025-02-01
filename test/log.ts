@@ -5,6 +5,7 @@ const logger = new LogBot({
 })
 
 logger.log(404, "Not found")
+logger.log(100, "Continue")
 logger.log(200, "OK")
 logger.log(500, "Internal server error")
 

@@ -23,6 +23,7 @@ const logger = new LogBot({
 logger.setLogFilePath("./log.txt")
 
 logger.log(404, "Not found")
+logger.log(100, "Continue")
 logger.log(200, "OK")
 logger.log(500, "Internal server error")
 ```
@@ -35,8 +36,9 @@ And will write to `log.txt`:
 
 ```
 [2021-08-01 12:00:00] [404] Not found
-[2021-08-01 12:00:01] [200] OK
-[2021-08-01 12:00:02] [500] Internal server error
+[2021-08-01 12:00:01] [404] Continue
+[2021-08-01 12:00:02] [200] OK
+[2021-08-01 12:00:03] [500] Internal server error
 ```
 
 # Widgets

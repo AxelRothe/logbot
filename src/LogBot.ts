@@ -76,12 +76,12 @@ export class LogBot {
 
     let string = chalk.dim(new Date(timestamp).toLocaleString()) + "\t"
 
-    if (errorString.match(/(error)|(fail)|(panic)/gi)) {
+    if (errorCode >= 500) {
       print = true
       string += this.color.red(errorCode)
-    } else if (errorString.match(/(warn)|(warning)/gi)) {
+    } else if (errorCode >= 300) {
       string += this.color.yellow(errorCode)
-    } else if (errorString.match(/(success)|(ok)|(create)/gi)) {
+    } else if (errorCode >= 200) {
       string += this.color.green(errorCode)
     } else {
       string += this.color.white(errorCode)
