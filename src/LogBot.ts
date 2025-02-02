@@ -3,7 +3,7 @@ import { LogRecord } from "@/LogRecord.js"
 import prettyjson from "prettyjson"
 import Spinnies from "spinnies"
 import progressbar, { GenericFormatter } from "cli-progress"
-import errorCodes from "@/errorCodes.json"
+import errorCodes from "@/errorCodes"
 import fs from "node:fs"
 
 type ColorString = "green" | "yellow" | "red" | "purple"
