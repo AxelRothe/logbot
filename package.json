@@ -7,7 +7,7 @@
   "types": "./build/index.d.ts",
   "scripts": {
     "test": "tsx ./test/log.ts",
-    "build": "tsc && tsc-alias"
+    "build": "npx tsc && tsc-alias"
   },
   "files": [
     "build"

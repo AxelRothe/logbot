@@ -218,7 +218,7 @@ export class LogBot {
         chalk.dim(options.barIncompleteString?.substring(0, incompleteSize)),
       ]
 
-      let icon = params.value >= params.total ? "✅" : "⏳"
+      let icon = payload.completed ? "✅" : "⏳"
       if (payload.aborted) icon = "❌"
 
       const elems = [
@@ -269,7 +269,10 @@ export class LogBot {
 
   private endProgressBar(id: string, payload?: any) {
     const bar = this.getProgressBar(id)
-    bar.update(payload)
+    bar.update({
+      ...payload,
+      completed: true,
+    })
     bar.stop()
   }
 
