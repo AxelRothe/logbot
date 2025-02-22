@@ -1,7 +1,7 @@
 import { LogBot } from "@/LogBot.js"
 
 const logger = new LogBot({
-  logfile: "./log.txt",
+  logfile: "./test/log.txt",
 })
 
 logger.log(404, "Not found")
