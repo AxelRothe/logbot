@@ -165,6 +165,8 @@ export class LogBot {
     // @ts-ignore
     this.spinnies.add(id, { text: text, color: chalk.hex("#d0fff4") })
     this.addToHistory(200, `[process:${id}] ${text}`)
+
+    return this.widgets.spinner(id)
   }
 
   /**
@@ -248,6 +250,8 @@ export class LogBot {
     })
 
     this.progressbars.set(id, bar)
+
+    return this.widgets.bar(id)
   }
 
   private getProgressBar(id: string) {

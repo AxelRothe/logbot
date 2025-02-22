@@ -11,8 +11,7 @@ logger.log(500, "Internal server error")
 
 const testSpinner = () => {
   return new Promise((resolve) => {
-    logger.widgets.spinners.create("spinner1", "Loading...")
-    const spinner = logger.widgets.spinner("spinner1")
+    const spinner = logger.widgets.spinners.create("spinner1", "Loading...")
 
     setTimeout(() => {
       spinner.update("Still loading...")
@@ -31,15 +30,13 @@ logger.log(200, "Spinner test passed.")
 
 const testProgressBar = (abortTest: boolean) => {
   return new Promise((resolve) => {
-    logger.widgets.bars.create("progress1", {
+    const bar = logger.widgets.bars.create("progress1", {
       total: 100,
       text: "Progress started",
       unit: "MB",
     })
 
     const progressIncrementAborted = setInterval(() => {
-      let bar = logger.widgets.bar("progress1")
-
       if (bar.getProgress() >= 0.5 && abortTest) {
         clearInterval(progressIncrementAborted)
         bar.abort({
